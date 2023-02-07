@@ -81,7 +81,6 @@ namespace BeautySalonService.Controllers
                     UseIdentityCss = true,
                 });
             }
-
             return RedirectToAction("Home", "Home");
         }
 
