@@ -1,0 +1,45 @@
+﻿@using BeautySalonService.ViewModels;
+@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error Page";
+}
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound404">
+            @{
+                <span style="--i:1">@Model.Code[0]</span>
+                <span style="--i:2">@Model.Code[1]</span>
+                <span style="--i:3">@Model.Code[2]</span>
+            }
+        </div>
+
+        <div class="errorMassage">
+            <h2 class="errorMsg">
+                @Model.Message;
+            </h2>
+        </div>
+
+        <div class="notfound-social">
+            <a href="#" class="github"><i class="fa fa-github"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        </div>
+
+        <div class="backHome">
+            <a href="@Url.Action("Home", "Home")"><i class="fa fa-arrow-left"></i> Back To Home</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-23581568-13");
+</script>

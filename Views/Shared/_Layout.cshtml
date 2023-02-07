@@ -1,0 +1,332 @@
+﻿@using BeautySalonService.ViewModels
+@using BeautySalonService.BusinessLayer.Helpers
+@model BaseViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+
+    @if (Model.UseGlobalCss)
+    {
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
+          rel="stylesheet" />
+        <link rel="stylesheet" href="fonts/icomoon/style.css" />
+        <link rel="stylesheet" href="css/owl.carousel.min.css" />
+
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    }
+
+    @if (Model.UseIdentityCss)
+    {
+        <link rel="stylesheet" href="~/IdentityFront/css/style.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    }
+
+    @if (Model.UseErrorCss)
+    {
+        <link type="text/css" rel="stylesheet" href="~/ErrorFront/css/font-awesome.min.css" />
+        <link type="text/css" rel="stylesheet" href="~/ErrorFront/css/style.css" />
+    }
+
+    <title>Beauty Salon Helper</title>
+</head>
+
+<!-- body -->
+<body class="main-layout d-flex flex-column min-vh-100">
+    <!-- header -->
+    @if (Model.UseHeader)
+    {
+        <!-- Header START -->
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
+        <div class="site-navbar-wrap">
+            <div class="site-navbar-top">
+                <div class="container py-3">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <div class="d-flex mr-auto">
+                                <a href="#" class="d-flex align-items-center mr-4">
+                                    <span class="icon-envelope mr-2"></span>
+                                    <span class="d-none d-md-inline-block"></span>
+                                </a>
+                                <a href="#" class="d-flex align-items-center mr-auto">
+                                    <span class="icon-phone mr-2"></span>
+                                    <span class="d-none d-md-inline-block">+(374) 43794969</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-6 text-right">
+                            <div class="mr-auto">
+                                <a href="#" class="p-2 pl-0 twitter">
+                                    <span class="icon-twitter"></span>
+                                </a>
+                                <a href="#" class="p-2 pl-0 facebook">
+                                    <span class="icon-facebook"></span>
+                                </a>
+                                <a href="#" class="p-2 pl-0 linkedin">
+                                    <span class="icon-linkedin"></span>
+                                </a>
+                                <a href="#" class="p-2 pl-0 instagram">
+                                    <span class="icon-instagram"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="site-navbar site-navbar-target js-sticky-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-2">
+                            <h1 class="my-0 site-logo">
+                                <a href="@Url.Action("Home", "Home")">
+                                    <img src="./images/logo.png"
+                                     class="img-fluid"
+                                     alt="logo"
+                                     width="50%"
+                                     style="padding-top: 10px" />
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="col-8">
+                            <nav class="site-navigation text-right" role="navigation">
+                                <div class="container navLinksBar">
+                                    <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3">
+                                        <a href="#"
+                                       class="site-menu-toggle js-menu-toggle text-white">
+                                            <span class="icon-menu h3"></span>
+                                        </a>
+                                    </div>
+                                    <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
+                                        <li class="active">
+                                            <a href="#home-section" class="nav-link">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#classes-section" class="nav-link">Service</a>
+                                        </li>
+                                        <li>
+                                            <a href="#about-section" class="nav-link">About</a>
+                                        </li>
+                                        <li>
+                                            <a href="#contacts-section" class="nav-link">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                        @if (ClientHelper.IsAuthorized)
+                        {
+                            <div class="col-1">
+                                <a class="loginButton" href="@Url.Action("Profile", "Identity", new { ClientHelper.ClientDetails.ClientId })">Profile</a>
+                            </div>
+                            <div class="col-1">
+                                <a class="loginButton" href="@Url.Action("SignOut", "Identity", new { ClientHelper.ClientDetails.ClientId })">SignOut</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-1">
+                                <a class="loginButton" href="@Url.Action("SignIn", "Identity")">SignIn</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header END -->
+    }
+
+
+    @RenderBody()
+
+    @if (Model.UseFooter)
+    {
+        <!-- Footer START-->
+        <footer class="text-center text-lg-start bg-white text-muted mt-auto">
+            <!-- Section: Social media -->
+            <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <!-- Left -->
+                <!-- Left -->
+                <!-- Right -->
+                <div>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" class="me-4 link-secondary">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+                <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-3">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <h6 class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3 text-secondary"></i>AliceBeautySalon
+                            </h6>
+                            <p>
+                                Ste grvuma esimincher vor Aregy kasi, es chgitem inch grem dra
+                                hamar esa grac. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit.
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                            <p>
+                                <a href="#!" class="text-reset">Maz</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Fen</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Hardaranq</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Karine</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                            <p>
+                                <a href="#!" class="text-reset">Gner</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Mi ban</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Zakazner</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Help me</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                            <p><i class="fas fa-home me-3 text-secondary"></i> Hasce</p>
+                            <p>
+                                <i class="fas fa-envelope me-3 text-secondary"></i>
+                                yanimail@mail.yom
+                            </p>
+                            <p>
+                                <i class="fas fa-phone me-3 text-secondary"></i> + heraxost gri
+                            </p>
+                            <p>
+                                <i class="fas fa-print me-3 text-secondary"></i> + debilneri
+                                hamar mi angame gri
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </div>
+            </section>
+            <!-- Section: Links  -->
+            <!-- Copyright -->
+            <div class="text-center p-4"
+             style="background-color: rgba(0, 0, 0, 0.025)">
+                © 2023 Copyright:
+                <a class="text-reset fw-bold"
+               href="https://saents.github.io/ContactPage">saents.github.io/ContactPage</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer END-->
+
+        <script data-cfasync="false"
+            src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/main.js"></script>
+        <script defer
+            src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
+            integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
+            data-cf-beacon='{"rayId":"79198bcb39642927","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}'
+            crossorigin="anonymous"></script>
+    }
+
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    @*<script>
+    $('a[href^="#"]').on('click', function (event) {
+
+    var target = $(this.getAttribute('href'));
+
+    if (target.length) {
+    event.preventDefault();
+    $('html, body').stop().animate({
+    scrollTop: target.offset().top
+    }, 2000);
+    }
+
+    });
+    </script>
+    <script>
+    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+    // Australia.
+    function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: { lat: 40.645037, lng: -73.880224 },
+    });
+
+    var image = 'images/maps-and-flags.png';
+    var beachMarker = new google.maps.Marker({
+    position: { lat: 40.645037, lng: -73.880224 },
+    map: map,
+    icon: image
+    });
+    }
+    </script>
+    <!-- google map js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>*@
+    <!-- end google map js -->
+    @*@await RenderSectionAsync("Scripts", required: false)*@
+</body>
+</html>

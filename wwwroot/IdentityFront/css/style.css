@@ -1,0 +1,79 @@
+.bgImg {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../img/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-body.p-5.formCard,
+.card.shadow-lg {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.6px);
+  -webkit-backdrop-filter: blur(5.6px);
+  border: 1px solid rgba(255, 255, 255, 0.21);
+}
+
+.identityButton {
+  background-color: rgb(250, 166, 142) !important;
+  outline: none;
+  border: none !important;
+  --color: rgb(245, 138, 109);
+  font-family: inherit;
+  display: inline-block;
+  width: 40%;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+
+
+.identityButton::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 180px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.identityButton:hover {
+  color: white;
+}
+
+.identityButton:before {
+  top: 100%;
+  left: 100%;
+  transition: .3s all;
+}
+
+.identityButton:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+.text-center a {
+  font-size: 1em;
+  font-weight: bold;
+  transition: all .2s ease-in-out;
+}
+
+.text-center a:hover {
+  color: #fff !important;
+}
+
+.nameInp,
+.surInp {
+  display: block;
+}
+

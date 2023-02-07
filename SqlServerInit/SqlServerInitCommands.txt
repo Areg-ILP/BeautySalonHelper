@@ -1,0 +1,61 @@
+﻿Hi, for init your SQL Server and DataBase you need to run commands in this file step by step.
+
+1. Command for create DataBase.
+
+#############################################
+CREATE DATABASE BeautySalonService;
+#############################################
+
+2. Command for create Roles Table.
+
+#############################################
+CREATE TABLE Roles (
+	[Id] INT IDENTITY(1,1) NOT NULL,
+    [Name] NVARCHAR(30) NOT NULL,
+	[CreationDate] DATETIME NOT NULL,
+	CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
+	(
+		[RoleId] ASC
+	)
+	WITH 
+	(
+		PAD_INDEX = OFF,
+		STATISTICS_NORECOMPUTE = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON
+	)
+	ON [PRIMARY]
+) ON [PRIMARY]
+#############################################
+
+2. Command for create Clients table.
+
+#############################################
+CREATE TABLE Clients (
+    [ClientId] int IDENTITY(1,1) NOT NULL,
+	[RoleId] int NOT NULL,
+	[Email] nvarchar(30) NOT NULL,
+    [Password] nvarchar(255) NOT NULL,
+    [Name] nvarchar(30) NOT NULL,
+    [SureName] nvarchar(30) NOT NULL,
+	[CreationDate] DATETIME NOT NULL,
+	CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 
+	(
+		[ClientId] ASC
+	)
+	WITH 
+	(
+		PAD_INDEX = OFF,
+		STATISTICS_NORECOMPUTE = OFF,
+		IGNORE_DUP_KEY = OFF,
+		ALLOW_ROW_LOCKS = ON,
+		ALLOW_PAGE_LOCKS = ON
+	)
+	ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[Clients] WITH CHECK ADD  CONSTRAINT [FK_Client_Role_RoleId] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[Roles] ([RoleId])
+ON DELETE CASCADE
+#############################################

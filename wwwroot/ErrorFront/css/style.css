@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Passion+One&display=swap");
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Passion One";
+  font-weight: 400;
+}
+
+body {
+  background: url(../img/bg.jpg);
+}
+
+#notfound {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#notfound .notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  background: rgba(255, 255, 255, 0.31);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+#notfound .notfound .notfound404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #notfound .notfound .notfound404 h1 {
+  
+} */
+
+#notfound .notfound .notfound404 span {
+  font-size: 10em;
+  color: #222225;
+  animation: waviy 1s infinite;
+  animation-delay: calc(.3s * var(--i));
+}
+
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+}
+
+#notfound .notfound .errorMassage {
+  text-align: center;
+}
+
+#notfound .notfound .errorMassage h2 {
+  font-size: 1.5em;
+  margin: 10px 20px;
+  color: #252525;
+}
+
+#notfound .notfound .notfound-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+#notfound .notfound .notfound-social > a {
+  display: inline-block;
+  text-decoration: none;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  font-size: 14px;
+  background-color: #222225;
+  color: #fff;
+  text-align: center;
+  margin: 0 5px;
+  transition: all ease-in-out .2s;
+  border-radius: 10px;
+}
+
+#notfound .notfound .notfound-social > a:hover {
+  background-color: #858585;
+}
+
+#notfound .notfound .backHome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24%;
+  width: 100%;
+}
+
+#notfound .notfound .backHome > a {
+  text-decoration: none;
+  color: #252525;
+  font-size: 1.2em;
+  transition: all ease-in-out .15s;
+  margin-bottom: 15px;
+}
+
+#notfound .notfound .backHome > a:hover {
+  transform: scale(1.1);
+  color: #464646
+}
+
+@media only screen and (max-width: 928px) {
+  #notfound .notfound {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 551px) {
+  #notfound .notfound {
+    width: 80%;
+  }
+
+  #notfound .notfound .notfound404 span {
+    font-size: 6em;
+  }
+
+  #notfound .notfound .errorMassage h2 {
+    margin: 5px 15px;
+    font-size: 1.25em;
+
+  }
+}
