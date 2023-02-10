@@ -3,6 +3,9 @@ using BeautySalonService.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using BeautySalonService.Models.Identity;
+using BeautySalonService.BusinessLayer.ActionFIlter;
+using BeautySalonService.BusinessLayer.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeautySalonService.Controllers
 {
@@ -14,25 +17,31 @@ namespace BeautySalonService.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [ClientAuthorization(RoleTypes.All)]
+        public IActionResult Users()
         {
             return View(new AdminViewModel
             {
-                ClientsDetails = _context.Clients.Select(c => new ClientDetialsModel
+                ClientsDetails = _context.Clients
+                .Include(x => x.Role)
+                .Select(c => new ClientDetialsModel
                 {
                     ClientId = c.Id,
                     Email = c.Email,
                     Name= c.Name,
+                    MobileNumber = c.MobileNumber,
+                    SureName = c.SureName,
                     Role = new RoleDetailsModel
                     {
-                        Id= c.Id,
-                        Name = c.Name,
+                        Id= c.RoleId,
+                        Name = c.Role.Name,
                     },
-                    SureName = c.SureName
                 }).ToList(),
-                UseFooter = true,
+                UseAdminCss = true,
+                UseFooter = false,
                 UseHeader = false,
-            }); ;
+            });
         }
     }
 }

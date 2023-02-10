@@ -7,5 +7,6 @@
         public bool UseGlobalCss { get; set; } = true;
         public bool UseIdentityCss { get; set; } = false;
         public bool UseErrorCss { get; set; } = false;
+        public bool UseAdminCss { get; set; } = false;
     }
 }
