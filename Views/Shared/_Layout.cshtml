@@ -139,16 +139,22 @@
                         @if (ClientHelper.IsAuthorized)
                         {
                             <div class="col-1">
-                                <a class="loginButton" href="@Url.Action("Profile", "Identity", new { ClientHelper.ClientDetails.ClientId })">Profile</a>
+                                <button class="loginButton" onclick="window.location= '@Url.Action("Profile", "Identity", new { ClientHelper.ClientDetails.ClientId })'">
+                                    Profile
+                                </button>
                             </div>
                             <div class="col-1">
-                                <a class="loginButton" href="@Url.Action("SignOut", "Identity", new { ClientHelper.ClientDetails.ClientId })">SignOut</a>
+                                <button class="loginButton" onclick="window.location= '@Url.Action("SignOut", "Identity", new { ClientHelper.ClientDetails.ClientId })'">
+                                    SignOut
+                                </button>
                             </div>
                         }
                         else
                         {
                             <div class="col-1">
-                                <a class="loginButton" href="@Url.Action("SignIn", "Identity")">SignIn</a>
+                                <button class="loginButton" onclick="window.location= '@Url.Action("SignIn", "Identity")'">
+                                    SignIn
+                                </button>
                             </div>
                         }
                     </div>

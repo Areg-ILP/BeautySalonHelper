@@ -51,17 +51,6 @@ $(document).ready(function () {
     });
 
     $(".fa-info-circle").click(function () {
-        var rowId = $(this).closest("tr").find("td:eq(0)").text();
-        var name = $(this).closest("tr").find("td:eq(1)").text();
-        var email = $(this).closest("tr").find("td:eq(2)").text();
-        var mobileNumber = $(this).closest("tr").find("td:eq(3)").text();
-        var role = $(this).closest("tr").find("td:eq(4)").text();
-
-        $("#modal-id").text(rowId);
-        $("#modal-name").text(name);
-        $("#modal-email").text(email);
-        $("#modal-mobileNumber").text(mobileNumber);
-        $("#modal-role").text(role);
         $("#details-modal").modal("show");
     });
 });

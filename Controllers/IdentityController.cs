@@ -74,7 +74,7 @@ namespace BeautySalonService.Controllers
                            new
                            {
                                Code = 404.ToString(),
-                               Message = $"Bad Request.\nInvalid client Id."
+                               Message = $"Not Found.\nInvalid client Id."
                            });
                 }
 

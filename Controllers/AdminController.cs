@@ -43,5 +43,25 @@ namespace BeautySalonService.Controllers
                 UseHeader = false,
             });
         }
+
+
+        [HttpGet]
+        [ClientAuthorization(RoleTypes.All)]
+        public IActionResult UserDetails(int userId)
+        {
+            var userDetails = _context.Clients.Include(c => c.Role).SingleOrDefault(c => c.Id == userId);
+            // havaqi model nor veradarcru vor chkaxi. hamel siruna
+            if (userDetails == null)
+            {
+                return RedirectToAction("Error", "Home",
+                new
+                {
+                    Code = 404.ToString(),
+                    Message = $"Not Found.\nInvalid client Id."
+                });
+            }
+            
+            return Json(userDetails);
+        }
     }
 }
