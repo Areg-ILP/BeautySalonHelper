@@ -1,4 +1,4 @@
-﻿@using BeautySalonService.ViewModels
+﻿@using BeautySalonService.ViewModels.Identity
 @model ProfileViewModel
 
 @{
@@ -21,33 +21,33 @@
 							<div class="d-flex flex-row justify-content-around">
 								<div>
 									<label class="mt-2 text-muted"for="id">Id </label>
-									<input id="Id" type="text" class="form-control nameInp" readonly name="id" value="@Model.Id" required autofocus>
+									<input id="Id" type="text" class="form-control nameInp" readonly name="id" value="@Model.Id" required>
 								</div>
 								<div>
 									<label class="mt-2 text-muted d-inline-block">Role</label>
-									<input id="Role" type="text" class="form-control surInp" disabled value="@Model.RoleName" required autofocus>
+									<input id="Role" type="text" class="form-control surInp" disabled value="@Model.RoleName" required>
 								</div>
 							</div>
 
 							<div class="d-flex flex-row justify-content-around">
 								<div>
 									<label class="mt-2 text-muted" for="name">Name </label>
-									<input id="name" type="text" class="form-control nameInp" name="name" value="@Model.Name" required autofocus>
+									<input id="name" type="text" class="form-control nameInp" name="name" value="@Model.Name" required>
 								</div>
 								<div>
 									<label class="mt-2 text-muted" for="surname">Surname</label>
-									<input id="surname" type="text" class="form-control surInp" name="surename" value="@Model.SureName" required autofocus>
+									<input id="surname" type="text" class="form-control surInp" name="surename" value="@Model.SureName" required>
 								</div>
 							</div>
 
 							<div class="d-flex flex-row justify-content-around">
 								<div>
 									<label class="mt-2 text-muted" for="email">E-Mail </label>
-									<input id="email" type="email" class="form-control nameInp" name="email" value="@Model.Email" required autofocus>
+									<input id="email" type="email" class="form-control nameInp" name="email" value="@Model.Email" required>
 								</div>
 								<div>
 									<label class="mt-2 text-muted" for="mobileNumber">Mobile Number</label>
-									<input id="mobileNumber" type="tel" class="form-control surInp" name="mobileNumber" value="@Model.MobileNumber" pattern="[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}" autofocus>
+									<input id="mobileNumber" type="tel" class="form-control surInp" name="mobileNumber" value="@Model.MobileNumber" pattern="[0-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}">
 								</div>
 							</div>
 														

@@ -1,4 +1,6 @@
-﻿namespace BeautySalonService.Models.Identity
+﻿using System;
+
+namespace BeautySalonService.Models.Identity
 {
     public sealed class ClientDetialsModel
     {
@@ -7,6 +9,7 @@
         public string SureName { get; set; }
         public string Email { get; set; }
         public string MobileNumber { get; set; }
+        public DateTime CreationDate { get; set; }
         public RoleDetailsModel Role { get; set; }
     }
 }

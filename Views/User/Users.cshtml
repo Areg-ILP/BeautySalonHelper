@@ -1,5 +1,6 @@
-﻿@using BeautySalonService.ViewModels
-@model AdminViewModel
+﻿@using BeautySalonService.Models.Identity
+@using BeautySalonService.ViewModels.Admin.User
+@model AdminUserIndexViewModel
 
 @{
     ViewData["Title"] = "Admin Page - Users";
@@ -28,24 +29,21 @@
         <tbody id="table-body">
             @foreach (var user in Model.ClientsDetails)
             {
-                <tr>
+                <tr id="@user.ClientId">
                     <td>@user.ClientId</td>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
                     <td>@user.MobileNumber</td>
                     <td>@user.Role.Name</td>
                     <td class="actions-data">
-                        <a href="#"
-                       class="edit-btn"
-                       data-toggle="modal"
-                       data-target="#editModal">
-                            <i class="fas fa-edit"></i>
+                        <a href="#" class="edit-btn">
+                            <i class="fas fa-edit" aria-hidden="true" onclick="getRolesForEdit(@user.ClientId, @user.Role.Id)"></i>
                         </a>
                         <a href="#" class="delete-btn">
                             <i class="fa fa-trash-alt" aria-hidden="true"></i>
                         </a>
                         <a href="#" class="info-btn">
-                            <i class="fa fa-info-circle" aria-hidden="true" onclick="GetUserDetails(@user.ClientId)"></i>
+                            <i class="fa fa-info-circle" aria-hidden="true" onclick="getUserDetails(@user.ClientId)"></i>
                         </a>
                     </td>
                 </tr>
@@ -89,6 +87,7 @@
                     <span id="modal-mobileNumber"></span>
                 </p>
                 <p><strong>Role:</strong> <span id="modal-role"></span></p>
+                <p><strong>Creation Date:</strong> <span id="modal-creation-date"></span></p>
             </div>
             <div class="modal-footer">
                 <button type="button"
@@ -122,19 +121,13 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <select class="custom-select" id="gender2">
-                            <option selected>Choose...</option>
-                            <option value="1">Super Admin</option>
-                            <option value="2">Default User</option>
-                            <option value="2">Manager</option>
+                        <select class="custom-select" id="roleSelect">
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                 </button>
                 <button type="button" class="btn btn-primary" id="saveChanges">
@@ -156,7 +149,7 @@
         <div class="modal-content delete-modal">
             <div class="modal-body">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Are you sure you want to delete this row?
+                    Are you sure you want to delete this user?
                 </h5>
             </div>
             <div class="modal-footer">
@@ -165,7 +158,7 @@
                         data-dismiss="modal">
                     Close
                 </button>
-                <button type="button" class="btn btn-danger" id="saveChanges">
+                <button type="button" class="btn btn-danger" id="deleteUser">
                     Delete
                 </button>
             </div>
@@ -176,4 +169,3 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/AdminFront/js/script.js"></script>
-<script src="~/AdminFront/js/AjaxHelper.js"></script>

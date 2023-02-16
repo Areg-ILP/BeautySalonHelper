@@ -1,4 +1,6 @@
-﻿namespace BeautySalonService.ViewModels
+﻿using BeautySalonService.ViewModels.Base;
+
+namespace BeautySalonService.ViewModels.Identity
 {
     public sealed class ProfileViewModel : BaseViewModel
     {

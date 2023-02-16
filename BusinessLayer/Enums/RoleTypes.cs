@@ -3,7 +3,7 @@
     public enum RoleTypes
     {
         All = 0,
-        DefaultUser = 1,
-        SuperAdmin = 2,
+        SuperAdmin = 1,
+        DefaultUser = 2,
     }
 }

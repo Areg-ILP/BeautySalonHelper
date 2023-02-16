@@ -1,4 +1,4 @@
-﻿namespace BeautySalonService.ViewModels
+﻿namespace BeautySalonService.ViewModels.Base
 {
     public abstract class BaseViewModel
     {

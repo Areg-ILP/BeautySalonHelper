@@ -1,24 +1,27 @@
-﻿@using BeautySalonService.ViewModels
-@using BeautySalonService.BusinessLayer.Helpers
+﻿@using BeautySalonService.BusinessLayer.Helpers
+@using BeautySalonService.ViewModels.Base
 @model BaseViewModel
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     @if (Model.UseGlobalCss)
     {
-        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
-          rel="stylesheet" />
-        <link rel="stylesheet" href="fonts/icomoon/style.css" />
-        <link rel="stylesheet" href="css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap" />
+        <link rel="stylesheet" href="~/LayoutFront/fonts/icomoon/style.css" />
+        <link rel="stylesheet" href="~/LayoutFront/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="~/LayoutFront/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/LayoutFront/css/style.css" />
 
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <script src="~/LayoutFront/js/jquery.min.js"></script>
+        <script src="~/LayoutFront/js/popper.min.js"></script>
+        <script src="~/LayoutFront/js/bootstrap.bundle.min.js"></script>
+        <script src="~/LayoutFront/js/jquery-3.0.0.min.js"></script>
+        <script src="~/LayoutFront/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="~/LayoutFront/js/custom.js"></script>   
     }
 
     @if (Model.UseIdentityCss)
@@ -47,12 +50,9 @@
     <title>Beauty Salon Helper</title>
 </head>
 
-<!-- body -->
 <body class="main-layout d-flex flex-column min-vh-100">
-    <!-- header -->
     @if (Model.UseHeader)
     {
-        <!-- Header START -->
         <div class="site-mobile-menu site-navbar-target">
             <div class="site-mobile-menu-header">
                 <div class="site-mobile-menu-close mt-3">
@@ -102,7 +102,7 @@
                         <div class="col-2">
                             <h1 class="my-0 site-logo">
                                 <a href="@Url.Action("Home", "Home")">
-                                    <img src="./images/logo.png"
+                                    <img src="~/LayoutFront/img/logo.png"
                                      class="img-fluid"
                                      alt="logo"
                                      width="50%"
@@ -161,21 +161,14 @@
                 </div>
             </div>
         </div>
-        <!-- Header END -->
     }
-
 
     @RenderBody()
 
     @if (Model.UseFooter)
     {
-        <!-- Footer START-->
         <footer class="text-center text-lg-start bg-white text-muted mt-auto">
-            <!-- Section: Social media -->
             <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                <!-- Left -->
-                <!-- Left -->
-                <!-- Right -->
                 <div>
                     <a href="" class="me-4 link-secondary">
                         <i class="fab fa-facebook-f"></i>
@@ -196,17 +189,11 @@
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
-                <!-- Right -->
             </section>
-            <!-- Section: Social media -->
-            <!-- Section: Links  -->
             <section class="">
                 <div class="container text-center text-md-start mt-5">
-                    <!-- Grid row -->
                     <div class="row mt-3">
-                        <!-- Grid column -->
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            <!-- Content -->
                             <h6 class="text-uppercase fw-bold mb-4">
                                 <i class="fas fa-gem me-3 text-secondary"></i>AliceBeautySalon
                             </h6>
@@ -216,10 +203,7 @@
                                 adipisicing elit.
                             </p>
                         </div>
-                        <!-- Grid column -->
-                        <!-- Grid column -->
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <!-- Links -->
                             <h6 class="text-uppercase fw-bold mb-4">Products</h6>
                             <p>
                                 <a href="#!" class="text-reset">Maz</a>
@@ -234,10 +218,7 @@
                                 <a href="#!" class="text-reset">Karine</a>
                             </p>
                         </div>
-                        <!-- Grid column -->
-                        <!-- Grid column -->
                         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <!-- Links -->
                             <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
                             <p>
                                 <a href="#!" class="text-reset">Gner</a>
@@ -252,10 +233,7 @@
                                 <a href="#!" class="text-reset">Help me</a>
                             </p>
                         </div>
-                        <!-- Grid column -->
-                        <!-- Grid column -->
                         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                            <!-- Links -->
                             <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                             <p><i class="fas fa-home me-3 text-secondary"></i> Hasce</p>
                             <p>
@@ -270,80 +248,27 @@
                                 hamar mi angame gri
                             </p>
                         </div>
-                        <!-- Grid column -->
                     </div>
-                    <!-- Grid row -->
                 </div>
             </section>
-            <!-- Section: Links  -->
-            <!-- Copyright -->
             <div class="text-center p-4"
              style="background-color: rgba(0, 0, 0, 0.025)">
-                © 2023 Copyright:
-                <a class="text-reset fw-bold"
-               href="https://saents.github.io/ContactPage">saents.github.io/ContactPage</a>
+                © 2023 Copyright: Beauty Salon Master
             </div>
-            <!-- Copyright -->
         </footer>
-        <!-- Footer END-->
 
-        <script data-cfasync="false"
-            src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/main.js"></script>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="~/LayoutFront/js/jquery-3.3.1.min.js"></script>
+        <script src="~/LayoutFront/js/popper.min.js"></script>
+        <script src="~/LayoutFront/js/bootstrap.min.js"></script>
+        <script src="~/LayoutFront/js/jquery.sticky.js"></script>
+        <script src="~/LayoutFront/js/main.js"></script>
         <script defer
             src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993"
             integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA=="
             data-cf-beacon='{"rayId":"79198bcb39642927","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.11.3","si":100}'
             crossorigin="anonymous"></script>
-    }
-
-    <!-- end footer -->
-    <!-- Javascript files-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <!-- sidebar -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
-    @*<script>
-    $('a[href^="#"]').on('click', function (event) {
-
-    var target = $(this.getAttribute('href'));
-
-    if (target.length) {
-    event.preventDefault();
-    $('html, body').stop().animate({
-    scrollTop: target.offset().top
-    }, 2000);
-    }
-
-    });
-    </script>
-    <script>
-    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-    // Australia.
-    function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: { lat: 40.645037, lng: -73.880224 },
-    });
-
-    var image = 'images/maps-and-flags.png';
-    var beachMarker = new google.maps.Marker({
-    position: { lat: 40.645037, lng: -73.880224 },
-    map: map,
-    icon: image
-    });
-    }
-    </script>
-    <!-- google map js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap"></script>*@
-    <!-- end google map js -->
-    @*@await RenderSectionAsync("Scripts", required: false)*@
+    }   
+    
 </body>
 </html>

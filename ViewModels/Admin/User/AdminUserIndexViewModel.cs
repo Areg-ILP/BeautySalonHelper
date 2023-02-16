@@ -1,10 +1,10 @@
 ﻿using BeautySalonService.Models.Identity;
-using System.Collections;
+using BeautySalonService.ViewModels.Base;
 using System.Collections.Generic;
 
-namespace BeautySalonService.ViewModels
+namespace BeautySalonService.ViewModels.Admin.User
 {
-    public sealed class AdminViewModel : BaseViewModel
+    public sealed class AdminUserIndexViewModel : BaseViewModel
     {
         public List<ClientDetialsModel> ClientsDetails { get; set; }
     }

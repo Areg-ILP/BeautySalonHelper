@@ -1,12 +1,6 @@
-﻿using BeautySalonService.Models;
-using BeautySalonService.ViewModels;
+﻿using BeautySalonService.Models.Home;
+using BeautySalonService.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BeautySalonService.Controllers
 {
@@ -17,7 +11,7 @@ namespace BeautySalonService.Controllers
             return View(new HomeViewModel());
         }
 
-        public IActionResult Error(string code, string message)
+        public IActionResult Error(ErrorDetailsModel request)
         {
             return View(new ErrorViewModel()
             {
@@ -25,8 +19,8 @@ namespace BeautySalonService.Controllers
                 UseHeader = false,
                 UseGlobalCss = false,
                 UseErrorCss = true,
-                Code = code,
-                Message = message,
+                Code = request.Code,
+                Message = request.Message,
             });
         }
     }

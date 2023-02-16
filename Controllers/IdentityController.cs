@@ -4,7 +4,7 @@ using BeautySalonService.BusinessLayer.Helpers;
 using BeautySalonService.DataLayer.Context;
 using BeautySalonService.DataLayer.Entities;
 using BeautySalonService.Models.Identity;
-using BeautySalonService.ViewModels;
+using BeautySalonService.ViewModels.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +18,7 @@ namespace BeautySalonService.Controllers
     public class IdentityController : Controller
     {
         private readonly BeautySalonServiceDbContext _context;
+
         public IdentityController(BeautySalonServiceDbContext context)
         {
             _context = context;
@@ -48,8 +49,8 @@ namespace BeautySalonService.Controllers
         }
 
 		[HttpGet]
-		[ClientAuthorization(RoleTypes.All)]
-		public IActionResult ResetPassword()
+        [ClientAuthorization(RoleTypes.All)]
+        public IActionResult ResetPassword()
 		{
 			return View(new ResetPasswordViewModel
 			{
@@ -71,11 +72,11 @@ namespace BeautySalonService.Controllers
                 if(client == null)
                 {
                     return RedirectToAction("Error", "Home",
-                           new
-                           {
-                               Code = 404.ToString(),
-                               Message = $"Not Found.\nInvalid client Id."
-                           });
+                    new
+                    {
+                        Code = 404,
+                        Message = $"Not Found.\nInvalid client Id."
+                    });
                 }
 
                 return View(new ProfileViewModel
@@ -92,12 +93,13 @@ namespace BeautySalonService.Controllers
                     UseIdentityCss = true,
                 });
             }
+
             return RedirectToAction("Error", "Home",
-                   new
-                   {
-                       Code = 400.ToString(),
-                       Message = $"Bad Request.\nInvalid client Id."
-                   });
+            new
+            {
+                Code = 400,
+                Message = $"Bad Request.\nInvalid client Id."
+            });
         }
 
         [HttpGet]
@@ -137,20 +139,20 @@ namespace BeautySalonService.Controllers
                 catch (Exception ex)
                 {
                     return RedirectToAction("Error", "Home",
-                           new
-                           {
-                               Code = 500.ToString(),
-                               Message = $"Updateing client error.\nException message: {ex.Message}"
-                           });
+                    new
+                    {
+                        Code = 500,
+                        Message = $"Updateing client error.\nException message: {ex.Message}"
+                    });
                 }
             }
 
             return RedirectToAction("Error", "Home",
-                   new
-                   {
-                       Code = 400.ToString(),
-                       Message = $"Bad Request.\nModel validation problem or invalid data."
-                   });
+            new
+            {
+                Code = 400,
+                Message = $"Bad Request.\nModel validation problem or invalid data."
+            });
         }
 
         [HttpPost]
@@ -178,20 +180,20 @@ namespace BeautySalonService.Controllers
                 catch (Exception ex)
                 {
                     return RedirectToAction("Error", "Home",
-                           new
-                           {
-                               Code = 500.ToString(),
-                               Message = $"Updateing client error.\nException message: {ex.Message}"
-                           });
+                    new
+                    {
+                        Code = 500,
+                        Message = $"Updateing client error.\nException message: {ex.Message}"
+                    });
                 }
             }
 
             return RedirectToAction("Error", "Home",
-                   new
-                   {
-                       Code = 400.ToString(),
-                       Message = $"Bad Request.\nModel validation problem or invalid data."
-                   });
+            new
+            {
+                Code = 400,
+                Message = $"Bad Request.\nModel validation problem or invalid data."
+            });
         }
 
         [HttpPost]
@@ -225,11 +227,11 @@ namespace BeautySalonService.Controllers
                 else
                 {
                     return RedirectToAction("Error", "Home",
-                           new
-                           {
-                               Code = 404.ToString(),
-                               Message = $"Client error.\nClient not found."
-                           });
+                    new
+                    {
+                        Code = 404,
+                        Message = $"Client error.\nClient not found."
+                    });
                 }
             }
 
@@ -254,7 +256,7 @@ namespace BeautySalonService.Controllers
                             Name = request.Name,
                             SureName = request.SureName,
                             MobileNumber = request.MobileNumber,
-                            RoleId = 1,
+                            RoleId = 2, // Default User Role
                         };
 
                         await _context.AddAsync(newClient);
@@ -280,21 +282,21 @@ namespace BeautySalonService.Controllers
                     catch (Exception ex)
                     {
                         return RedirectToAction("Error", "Home",
-                               new
-                               {
-                                   Code = 500.ToString(),
-                                   Message = $"Inserting client error.\nException message: {ex.Message}"
-                               });
+                        new
+                        {
+                            Code = 500,
+                            Message = $"Inserting client error.\nException message: {ex.Message}"
+                        });
                     }
                 }
             }
 
             return RedirectToAction("Error", "Home",
-                   new
-                   {
-                       Code = 400.ToString(),
-                       Message = $"Bad request.\nModel validation error."
-                   });
+            new
+            {
+                Code = 400,
+                Message = $"Bad request.\nModel validation error."
+            });
         }
     }
 }

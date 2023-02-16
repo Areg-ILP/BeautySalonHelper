@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace BeautySalonService.BusinessLayer.ActionFIlter
 {
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class ClientAuthorizationAttribute : ActionFilterAttribute
     {
         private readonly RoleTypes[] _accessibleRoles;
+
         public ClientAuthorizationAttribute(params RoleTypes[] roles)
         {
             _accessibleRoles = roles;

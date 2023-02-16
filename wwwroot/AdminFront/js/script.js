@@ -53,34 +53,98 @@ $(document).ready(function () {
     $(".fa-info-circle").click(function () {
         $("#details-modal").modal("show");
     });
-});
 
-$(".fa-trash-alt").click(function () {
-    var index = $(this).closest("tr").index();
-    $("#deleteModal").modal("show");
-});
-
-$(document).on("click", ".edit-icon", function () {
-    let row = $(this).closest("tr");
-    let cells = row.find("td");
-    let data = {};
-    cells.each(function () {
-        let key = $(this).data("col");
-        let value = $(this).text();
-        data[key] = value;
+    $(".fa-trash-alt").click(function () {
+        var userId = $(this).closest("tr").attr('id');
+        $('#deleteUser').attr('onclick', `deleteUserDetails(${userId})`);
+        $("#deleteModal").modal("show");
     });
 
-    $("#editModal").modal("show");
-    $.each(data, function (key, value) {
-        $('#editModal [name="' + key + '"]').val(value);
-    });
-
-    $("#editModal form").submit(function (e) {
-        e.preventDefault();
-        let formData = $(this).serializeArray();
-        $.each(formData, function (index, field) {
-            row.find('td[data-col="' + field.name + '"]').text(field.value);
-        });
-        $("#editModal").modal("hide");
+    $('#editModal').on('hidden.bs.modal', function (e) {
+        $('#roleSelect').empty();
     });
 });
+
+var getUserDetails = function (userId) {
+    $.ajax({
+        type: "GET",
+        url: 'UserDetails',
+        data: { userId: userId },
+        success: function (user) {
+            $('#modal-id').text(user.id)
+            $('#modal-name').text(user.name)
+            $('#modal-surname').text(user.surname)
+            $('#modal-mobileNumber').text(user.mobileNumber)
+            $('#modal-email').text(user.email)
+            $('#modal-role').text(user.role)
+            $('#modal-books-count').text(user.booksCount)
+            $('#modal-creation-date').text(user.creationDate)
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            var errorMessage = jqXHR.responseText;
+            var statusCode = jqXHR.status;
+            $("#details-modal").modal("hide");
+            alert('Status Code: ' + statusCode + ' Error Message: ' + errorMessage);
+        }
+    });
+};
+
+var deleteUserDetails = function (userId) {
+    $.ajax({
+        type: "DELETE",
+        url: 'DeleteUser',
+        data: { userId: userId },
+        success: function () {
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            var errorMessage = jqXHR.responseText;
+            var statusCode = jqXHR.status;
+            $("#deleteModal").modal("hide");
+            alert('Status Code: ' + statusCode + ' Error Message: ' + errorMessage);
+        }
+    });
+};
+
+var getRolesForEdit = function (userId, roleId) {
+    $.ajax({
+        type: "GET",
+        url: 'GetRoles',
+        success: function (roles) {
+            $.each(roles, function (index, value) {
+                $('#roleSelect').append($('<option>', {
+                    value: value.id,
+                    text: value.name,
+                    'selected': roleId === value.id ? true : false
+                }));
+            });
+
+            $('#saveChanges').attr('onclick', `updateUserRole(${userId}, ${roleId})`);
+            $("#editModal").modal("show");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            var errorMessage = jqXHR.responseText;
+            var statusCode = jqXHR.status;
+            $("#editModal").modal("hide");
+            alert('Status Code: ' + statusCode + ' Error Message: ' + errorMessage);
+        }
+    });
+}
+
+var updateUserRole = function (userId, roleId) {
+    var selectedRoleId = $('#roleSelect option:selected').val();
+    $.ajax({
+        type: "PUT",
+        url: 'UpdateUserRole',
+        data: { userId: userId, roleId: selectedRoleId },
+        success: function () {
+            location.reload();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            var errorMessage = jqXHR.responseText;
+            var statusCode = jqXHR.status;
+            $("#editModal").modal("hide");
+            alert('Status Code: ' + statusCode + ' Error Message: ' + errorMessage);
+        }
+    });
+}

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BeautySalonService.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BeautySalonService.ViewModels
+namespace BeautySalonService.ViewModels.Identity
 {
     public class SignUpViewModel : BaseViewModel
     {
